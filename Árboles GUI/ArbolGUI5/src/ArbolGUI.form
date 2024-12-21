@@ -119,7 +119,7 @@
               <text value="Recorrido en Profundidad (DFS)"/>
             </properties>
           </component>
-          <component id="8b5c5" class="javax.swing.JComboBox" binding="cbIzqDer">
+          <component id="8b5c5" class="javax.swing.JComboBox" binding="cbPosicion">
             <constraints>
               <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -127,7 +127,7 @@
               <model>
                 <item value="Izquierda1"/>
                 <item value="Izquierda2"/>
-                <item value="Derecha1"/>
+                <item value="Centro"/>
                 <item value="Derecha2"/>
                 <item value="Derecha3"/>
               </model>

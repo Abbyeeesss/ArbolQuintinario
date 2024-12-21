@@ -27,35 +27,35 @@ public class Arbol {
                     if (padre.izquierda1 == null) {
                         padre.izquierda1 = nodo;
                     } else {
-                        throw new IllegalArgumentException("Hijo Izq1 ya existe");
+                        throw new IllegalArgumentException("Ya existe");
                     }
                     break;
                 case "Izquierda2":
                     if (padre.izquierda2 == null) {
                         padre.izquierda2 = nodo;
                     } else {
-                        throw new IllegalArgumentException("Hijo Izq2 ya existe");
+                        throw new IllegalArgumentException("Ya existe");
                     }
                     break;
-                case "Derecha1":
-                    if (padre.derecha1 == null) {
-                        padre.derecha1 = nodo;
+                case "Centro":
+                    if (padre.centro == null) {
+                        padre.centro = nodo;
                     } else {
-                        throw new IllegalArgumentException("Hijo Der1 ya existe");
+                        throw new IllegalArgumentException("Ya existe");
                     }
                     break;
                 case "Derecha2":
-                    if (padre.derecha2 == null) {
-                        padre.derecha2 = nodo;
+                    if (padre.derecha1 == null) {
+                        padre.derecha1 = nodo;
                     } else {
-                        throw new IllegalArgumentException("Hijo Der2 ya existe");
+                        throw new IllegalArgumentException("Ya existe");
                     }
                     break;
                 case "Derecha3":
-                    if (padre.derecha3 == null) {
-                        padre.derecha3 = nodo;
+                    if (padre.derecha2 == null) {
+                        padre.derecha2 = nodo;
                     } else {
-                        throw new IllegalArgumentException("Hijo Der3 ya existe");
+                        throw new IllegalArgumentException("Ya existe");
                     }
                     break;
                 default:
@@ -89,9 +89,9 @@ public class Arbol {
             resultado.append(nodo.etiqueta).append(" ");
             if (nodo.izquierda1 != null) queue.add(nodo.izquierda1);
             if (nodo.izquierda2 != null) queue.add(nodo.izquierda2);
+            if (nodo.centro != null) queue.add(nodo.centro);
             if (nodo.derecha1 != null) queue.add(nodo.derecha1);
             if (nodo.derecha2 != null) queue.add(nodo.derecha2);
-            if (nodo.derecha3 != null) queue.add(nodo.derecha3);
         }
         return resultado.toString();
     }
@@ -105,9 +105,9 @@ public class Arbol {
         while (!stack.isEmpty()) {
             Nodo nodo = stack.pop();
             resultado.append(nodo.etiqueta).append(" ");
-            if (nodo.derecha3 != null) stack.push(nodo.derecha3);
             if (nodo.derecha2 != null) stack.push(nodo.derecha2);
             if (nodo.derecha1 != null) stack.push(nodo.derecha1);
+            if (nodo.centro != null) stack.push(nodo.centro);
             if (nodo.izquierda2 != null) stack.push(nodo.izquierda2);
             if (nodo.izquierda1 != null) stack.push(nodo.izquierda1);
         }
@@ -115,22 +115,39 @@ public class Arbol {
     }
 
     public Object[][] getMatrizAdyacencia() {
-        int size = nodos.size();
-        Object[][] matriz = new Object[size][size];
-        HashMap<String, Integer> etiquetaAIndice = new HashMap<>();
+        int tam = nodos.size();
+        Object[][] matriz = new Object[tam][tam];
+        Map<String, Integer> etiquetaAIndice = new HashMap<>();
 
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < tam; i++) {
             etiquetaAIndice.put(nodos.get(i).etiqueta, i);
+            for (int j = 0; j < tam; j++) {
+                matriz[i][j] = 0;
+            }
         }
 
-        for (int i = 0; i < size; i++) {
-            Nodo nodo = nodos.get(i);
+        for (Nodo nodo : nodos) {
             int desdeIndice = etiquetaAIndice.get(nodo.etiqueta);
-            if (nodo.izquierda1 != null) matriz[desdeIndice][etiquetaAIndice.get(nodo.izquierda1.etiqueta)] = 1;
-            if (nodo.izquierda2 != null) matriz[desdeIndice][etiquetaAIndice.get(nodo.izquierda2.etiqueta)] = 1;
-            if (nodo.derecha1 != null) matriz[desdeIndice][etiquetaAIndice.get(nodo.derecha1.etiqueta)] = 1;
-            if (nodo.derecha2 != null) matriz[desdeIndice][etiquetaAIndice.get(nodo.derecha2.etiqueta)] = 1;
-            if (nodo.derecha3 != null) matriz[desdeIndice][etiquetaAIndice.get(nodo.derecha3.etiqueta)] = 1;
+            if (nodo.izquierda1 != null) {
+                int hastaIndice = etiquetaAIndice.get(nodo.izquierda1.etiqueta);
+                matriz[desdeIndice][hastaIndice] = 1;
+            }
+            if (nodo.izquierda2 != null) {
+                int hastaIndice = etiquetaAIndice.get(nodo.izquierda2.etiqueta);
+                matriz[desdeIndice][hastaIndice] = 1;
+            }
+            if (nodo.centro != null) {
+                int hastaIndice = etiquetaAIndice.get(nodo.centro.etiqueta);
+                matriz[desdeIndice][hastaIndice] = 1;
+            }
+            if (nodo.derecha1 != null) {
+                int hastaIndice = etiquetaAIndice.get(nodo.derecha1.etiqueta);
+                matriz[desdeIndice][hastaIndice] = 1;
+            }
+            if (nodo.derecha2 != null) {
+                int hastaIndice = etiquetaAIndice.get(nodo.derecha2.etiqueta);
+                matriz[desdeIndice][hastaIndice] = 1;
+            }
         }
 
         return matriz;

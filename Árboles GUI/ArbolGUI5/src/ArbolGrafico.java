@@ -39,19 +39,19 @@ public class ArbolGrafico extends JPanel {
                 dibujarArbol(g2d, nodo.izquierda2, x - dimensionX / 2, y + dimensionY, dimensionX / 2, dimensionY);
             }
 
-            if (nodo.derecha1 != null) {
+            if (nodo.centro != null) {
                 g2d.drawLine(x, y, x + dimensionX / 2, y + dimensionY);
-                dibujarArbol(g2d, nodo.derecha1, x + dimensionX / 2, y + dimensionY, dimensionX / 2, dimensionY);
+                dibujarArbol(g2d, nodo.centro, x + dimensionX / 2, y + dimensionY, dimensionX / 2, dimensionY);
             }
 
-            if (nodo.derecha2 != null) {
+            if (nodo.derecha1 != null) {
                 g2d.drawLine(x, y, x + dimensionX, y + dimensionY);
                 dibujarArbol(g2d, nodo.derecha2, x + dimensionX, y + dimensionY, dimensionX / 2, dimensionY);
             }
 
-            if (nodo.derecha3 != null) {
+            if (nodo.derecha2 != null) {
                 g2d.drawLine(x, y, x + (dimensionX * 3 / 2), y + dimensionY);
-                dibujarArbol(g2d, nodo.derecha3, x + (dimensionX * 3 / 2), y + dimensionY, dimensionX / 2, dimensionY);
+                dibujarArbol(g2d, nodo.derecha2, x + (dimensionX * 3 / 2), y + dimensionY, dimensionX / 2, dimensionY);
             }
         }
     }

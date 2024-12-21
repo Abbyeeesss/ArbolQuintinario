@@ -108,7 +108,8 @@ public class ArbolGUI {
         for (int i = 0; i < matriz.length; i++) {
             nombreColumnas[i] = String.valueOf((char) ('A' + i));
         }
-        modeloTabla.setDataVector(matriz, nombreColumnas);
+
+        modeloTabla.setDataVector(matriz , nombreColumnas);
         tbMatrizAdyacencia.setModel(modeloTabla);
     }
 
@@ -120,6 +121,3 @@ public class ArbolGUI {
         frame.setVisible(true);
     }
 }
-
-
-

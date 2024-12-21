@@ -1,7 +1,7 @@
 public class Nodo {
     int x, y;
     String etiqueta;
-    Nodo izquierda1, izquierda2, derecha1, derecha2, derecha3;
+    Nodo izquierda1, izquierda2, centro, derecha1, derecha2;
 
     public Nodo(int x, int y, String etiqueta) {
         this.x = x;
@@ -9,9 +9,9 @@ public class Nodo {
         this.etiqueta = etiqueta;
         this.izquierda1 = null;
         this.izquierda2 = null;
+        this.centro = null;
         this.derecha1 = null;
         this.derecha2 = null;
-        this.derecha3 = null;
     }
 
     @Override
